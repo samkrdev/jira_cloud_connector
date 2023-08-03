@@ -1,4 +1,3 @@
-from math import sin
 import streamlit as st
 from JiraConnection import JiraConnection
 import plotly.express as px
@@ -12,13 +11,7 @@ tab1, tab2 = st.tabs(["Dashboard", "Credential Setup"])
 
 
 conn = st.experimental_connection(
-    "jira",
-    type=JiraConnection,
-    base_url="https://sam1120.atlassian.net",
-    credentials={
-        "username": st.secrets["credentials"]["username"],
-        "password": st.secrets["credentials"]["password"],
-    },
+    "jira", type=JiraConnection, base_url="https://sam1120.atlassian.net"
 )
 
 with tab1:
