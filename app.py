@@ -16,8 +16,6 @@ conn = st.experimental_connection(
 
 with tab1:
     st.title("Jira Dashboard")
-
-    # Query the Jira API using the search endpoint
     st.markdown("### Single Issue view")
     col_issue, col_detail = st.columns(2)
 
@@ -40,7 +38,7 @@ with tab1:
                     assignee = single_issue["fields"]["assignee"]["displayName"]
                 else:
                     # Handle the case when single_issue is None or the keys are missing.
-                    assignee = "Unassigned"  # Or any default value that suits your application.
+                    assignee = "Unassigned"  # Or any default value that suits your application.  # noqa: E501
 
                 status = single_issue["fields"]["status"]["name"]
                 st.dataframe(

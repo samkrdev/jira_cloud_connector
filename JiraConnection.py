@@ -29,7 +29,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
             base_url="https://your-jira-instance.atlassian.net",
             credentials={"username": "your_username", "password": "your_password"},
         )
-    """
+    """  # noqa: E501
 
     def __init__(self, connection_name: str, base_url: str, **kwargs):
         self.base_url = base_url
@@ -51,7 +51,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
         Example:
             # Connecting with valid credentials
             session = self._connect(credentials={"username": "your_username", "password": "your_password"})
-        """
+        """  # noqa: E501
         if "credentials" in kwargs:
             credentials = kwargs.pop("credentials")
         else:
@@ -96,7 +96,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
         Example:
             # Querying the Jira API for all projects
             projects = jira_connection.query(endpoint="/rest/api/3/project")
-        """
+        """  # noqa: E501
 
         @st.cache_data(ttl=ttl)
         def _query(endpoint: str, params: Dict[str, Any] = None, **kwargs):
@@ -124,7 +124,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
         Example:
             # Querying Jira API for all projects
             projects = jira_connection.query_projects()
-        """
+        """  # noqa: E501
 
         @st.cache_data(ttl=ttl)
         def _query(params: Dict[str, Any] = None, **kwargs):
@@ -154,7 +154,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
             # Querying Jira API for information about a specific issue
             issue_id = "ISSUE-123"
             issue_data = jira_connection.query_issue(issue_id)
-        """
+        """  # noqa: E501
 
         @st.cache_data(ttl=ttl)
         def _query(params: Dict[str, Any] = None, **kwargs):
@@ -163,7 +163,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
                 response = self.cursor().get(url, params=params)
                 response.raise_for_status()
                 return response.json()
-            except HTTPError as e:
+            except HTTPError as e:  # noqa: F841
                 # Handle the 404 error or other HTTP errors
                 return None
 
@@ -204,7 +204,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
             # Executing a JQL query to find all issues in a project
             jql_query = 'project = "MYPROJECT"'
             issues = jira_connection.query_jql(jql_query, return_type="json")
-        """
+        """  # noqa: E501
         if not jql_query:
             raise ValueError("ERROR: 'jql_query' is required")
 
