@@ -55,7 +55,7 @@ class JiraConnection(ExperimentalBaseConnection[requests.Session]):
         if "credentials" in kwargs:
             credentials = kwargs.pop("credentials")
         else:
-            credentials = self._secrets["credentials"]
+            credentials = st.secrets["credentials"]
         username = credentials["username"]
         password = credentials["password"]
         if credentials and username and password:
