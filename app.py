@@ -76,7 +76,7 @@ with tab1:
         st.write("----")
         # Display the results
         st.markdown("### Key Metrics based on the JQL using `JiraConnection.query_jql`")
-        col1, col2, col3, col4 = st.columns(4)
+        col1, col2, col3 = st.columns(3)
         with col1:
             st.metric(label="Total Issues", value=issues.shape[0])
         with col2:
@@ -91,9 +91,7 @@ with tab1:
                     "key"
                 ].values[0],
             )
-        with col4:
-            number_projects = len(conn.query_projects())
-            st.metric(label="Projects", value=number_projects)
+
         col5, col6 = st.columns(2, gap="medium")
 
         with col5:
